@@ -1,0 +1,62 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Solution {
+    
+    public static boolean check(int[][] edges, boolean[] visited, int start, int lv){
+        
+        if(lv >= edges.length || start < 0){
+            return false;
+        }
+        
+    	if(edges[start][lv] == 1){
+            return true;
+        }
+        visited[start] = true;
+        
+        for(int i=0; i<edges.length; i++){
+            
+            if(edges[start][i] == 1 && !visited[i]){
+                
+                if(check(edges, visited, i, lv)){
+                    return true;
+                }
+            }
+        }
+       
+        return false;
+    }
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+       
+        Scanner s = new Scanner(System.in);
+        
+        int n = s.nextInt();
+        int e = s.nextInt();
+        
+        int[][] edges = new int[n][n];
+        
+        for(int i=0; i<e; i++){
+            
+            int fv = s.nextInt();
+            int sv = s.nextInt();
+            
+            edges[fv][sv] = 1;
+            edges[sv][fv] = 1;
+            
+        }
+        
+        int fv = s.nextInt();
+        int lv = s.nextInt();
+        
+         boolean[] visited = new boolean[edges.length];
+        
+        System.out.println(check(edges,visited, fv, lv));
+
+	}
+
+}
