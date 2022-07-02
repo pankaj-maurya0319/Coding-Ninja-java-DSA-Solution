@@ -1,0 +1,88 @@
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+public class Solution {
+    
+    public static LinkedListNode<Integer> reverseLinkedListRec(LinkedListNode<Integer> head) {
+		
+        if(head==null || head.next == null){
+            return head;
+        }
+        
+//         LinkedListNode<Integer> finalHead = reverseLinkedListRec(head.next);
+        
+//         LinkedListNode temp = finalHead;
+        
+//         while(temp.next!=null){
+//             temp = temp.next;
+//         }
+        
+//         temp.next = head;
+//         head.next = null;
+        
+//         return finalHead;
+        
+        // another way
+        
+        LinkedListNode<Integer> tail = head.next;
+        LinkedListNode<Integer> ans = reverseLinkedListRec(head.next);
+        tail.next = head;
+        head.next = null;
+        
+        return ans;
+        
+	}
+// another way
+// 	public static LinkedListNode<Integer> reverseLinkedListRec(LinkedListNode<Integer> head) {
+		
+//         if(head==null){
+//             return head;
+//         }
+        
+//         if(head.next==null){
+//             return head;
+//         }
+//         LinkedListNode<Integer> tail = head.next;
+//         LinkedListNode<Integer> smallHead =  reverse(head);
+        
+//         tail.next = head;
+//         head.next = null;
+        
+//         return smallHead;
+        
+// 	}
+    
+//     public static LinkedListNode<Integer> reverse(LinkedListNode<Integer> head){
+        
+//         if(head==null){
+//            return head;
+//         }
+//         if(head.next == null){
+//             return head;
+//         }
+        
+//         LinkedListNode<Integer> head1 = reverse(head.next);
+//         LinkedListNode<Integer> temp = head1;
+        
+//         while(temp.next!=null){
+//             temp = temp.next;
+//         }
+//         temp.next = head;
+//         head.next = null;
+//         return head1;
+//     }
+
+}
+
