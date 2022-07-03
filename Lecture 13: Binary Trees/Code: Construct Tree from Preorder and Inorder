@@ -1,0 +1,75 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+    
+    
+    public static BinaryTreeNode<Integer> buildTreeHelper(int[] preOrder,int[] inOrder,int pos,int poe,int ins,int ine ){
+        if(ins > ine){
+            return null;
+        }
+        
+        int x = preOrder[pos]; // HERE WE ARE TAKING THE STARTING ELEMENT OF THE PREORDER ELEMENT ARRAY
+        
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(x);
+        
+        int position = -1;
+        
+        for(int i = 0; i <= ine ; i++ ){
+            if(x == inOrder[i] ){
+                position = i;
+            }
+        }
+        
+        if(position == -1){
+            return null;
+        }
+        
+        int lpos = pos+1;
+        int lins = ins;
+        int line = position-1; 
+        int lpoe = line-lins+lpos;
+        int rins = position+1;
+        int rine = ine;
+        int rpos = lpoe+1;
+        int rpoe = poe;
+        
+//         ABBREVIATION 
+//         1) LINS = LEFT INORDER START
+//         2) LINE = LEFT INORDER END
+//         3) LPOS = LEFT PREORDER START
+//         4) LPRE = LEFT PREORDER END
+//         5) RINS = RIGHT INORDER START
+//         6) RINE = RIGHT INORDER END 
+//         7) RPOS = RIGHT PREORDER START
+//         8) RPOE = RIGHT PREORDER END 
+        
+        
+        root.left = buildTreeHelper(preOrder,inOrder,lpos,lpoe,lins,line);
+        root.right =buildTreeHelper(preOrder,inOrder,rpos,rpoe,rins,rine);
+        
+        return root;
+        
+    }
+
+	public static BinaryTreeNode<Integer> buildTree(int[] preOrder, int[] inOrder) {
+		//Your code goes here
+        return buildTreeHelper(preOrder,inOrder,0,preOrder.length-1,0,inOrder.length-1);
+	}
+
+}
