@@ -1,0 +1,52 @@
+
+public class Solution {
+
+	public static char highestOccuringChar(String str) {
+		//Your code goes here
+        
+        char highestChar = str.charAt(0);
+       // int preCount =0;
+        // one way
+        // if(str  == " ")
+        //     return 'd';
+        
+//         for(int i=0; i<str.length(); i++){
+            
+            
+//             int currCount = 0;
+//             for(int j=i+1; j<str.length(); j++){
+        	        
+//                 if(str.charAt(i)==str.charAt(j)){
+//                     currCount++;
+//                 }
+                
+//             }
+//             if(currCount>preCount){
+//                 highestChar = str.charAt(i);
+//                 preCount = currCount;
+//             }
+//         }
+        // another way;
+        int count =0;
+        
+        int frequency[] = new int[256];
+        
+        for(int i=0;i<256; i++)
+            frequency[i]=0;
+        
+        for(int i=0; i<str.length(); i++){
+            frequency[str.charAt(i)]++;
+        }
+        
+        for(int i=0; i<str.length(); i++){
+            if(count<frequency[str.charAt(i)]){
+                count = frequency[str.charAt(i)];
+                highestChar = str.charAt(i);
+            }
+                
+        }
+        
+        return highestChar;
+	}
+
+}
