@@ -1,0 +1,174 @@
+/*
+ * Binary Tree Node class
+ * 
+ * class BinaryTreeNode<T> { 
+ * 		T data; 
+ * 		BinaryTreeNode<T> left; 
+ * 		BinaryTreeNode<T> right;
+ * 		public BinaryTreeNode(T data) 
+ * 		{ 
+ * 			this.data = data; 
+ * 		}
+ * }
+ */
+
+ /* 
+ * Main Method being used internally
+ *	public static void main(String[] args) throws IOException {
+ *		BinarySearchTree bst = new BinarySearchTree();
+ *		int choice, input;
+ *		int q = Integer.parseInt(br.readLine());
+ *		while (q-- > 0) {
+ *			st = new StringTokenizer(br.readLine());
+ *			choice = Integer.parseInt(st.nextToken());
+ *			switch (choice) {
+ *			case 1:
+ *				input = Integer.parseInt(st.nextToken());
+ *				bst.insert(input);
+ *				break;
+ *				case 2:
+ *				input = Integer.parseInt(st.nextToken());
+ *				bst.remove(input);
+ *				break;
+ *			case 3:
+ *				input = Integer.parseInt(st.nextToken());
+ *				System.out.println(bst.search(input));
+ *				break;
+ *			default:
+ *				bst.printTree();
+ *				break;
+ *			}
+ *		}
+ *	}
+ */
+
+public class BinarySearchTree {
+    
+    BinaryTreeNode<Integer> root;
+	
+	public void insert(int data) {
+		//Implement the insert() function
+		root = insertHelper(root,data);
+	}
+	
+	private BinaryTreeNode<Integer> insertHelper(BinaryTreeNode<Integer> root2, int data) {
+		
+		if(root2 == null) {
+			
+			BinaryTreeNode<Integer> newNode = new BinaryTreeNode<Integer>(data);
+		
+			return newNode;
+		
+		}
+		
+		if(root2.data >= data) {
+			
+			root2.left = insertHelper(root2.left,data);
+		
+		}else {
+		
+			root2.right = insertHelper(root2.right, data);
+	
+		}
+		
+		return root2;
+	}
+
+	public void remove(int data) {
+		//Implement the remove() function
+		root = removeHelper(root,data);
+	}
+	
+	private BinaryTreeNode<Integer> removeHelper(BinaryTreeNode<Integer> root2, int data) {
+		
+		if(root2 == null)
+			return null;
+		
+		if(data < root2.data) {
+			
+			root2.left = removeHelper(root2.left, data);
+		
+		}else if(data > root2.data) {
+		
+			root2.right = removeHelper(root2.right, data);
+		
+		}else {
+			
+			if(root2.left==null && root2.right==null) {
+				
+				return null;
+			
+			}else if(root2.left==null) {
+				
+				return root2.right;
+			
+			}else if(root2.right==null) {
+			
+				return root2.left;
+			
+			}else {
+				
+				BinaryTreeNode<Integer> minNode = root2.right;
+				
+				while(minNode.left!=null) {
+					minNode = minNode.left;
+				}
+				
+				root2.data = minNode.data;
+				
+				root2.right = removeHelper(root2.right,minNode.data);
+				
+			}
+			
+		}
+		
+		return root2;
+	}
+
+	public void printTree() {
+		//Implement the printTree() function
+		helperPrint(root);
+	}
+	
+	private void helperPrint(BinaryTreeNode<Integer> root) {
+		
+		if(root == null)
+			return ;
+		
+		String toBePrint = root.data + ":" ;
+		
+		if(root.left!=null) {
+			toBePrint += "L:" + root.left.data + ",";
+		}
+		
+		if(root.right!=null) {
+			toBePrint += "R:" + root.right.data;
+		}
+		System.out.println(toBePrint);
+		helperPrint(root.left);
+		helperPrint(root.right);
+		
+	}
+
+	public boolean search(int data) {
+		//Implement the search() function
+		return helperSearch(root,data);
+	}
+
+	private boolean helperSearch(BinaryTreeNode<Integer> root2, int data) {
+		
+		if(root2 == null)
+			return false;
+		
+		if(root2.data == data) {
+			return true;
+		}
+		
+		if(data > root2.data) {
+			return helperSearch(root2.right, data);
+		}else {
+			return helperSearch(root2.left, data);
+		}
+	}
+	
+}
