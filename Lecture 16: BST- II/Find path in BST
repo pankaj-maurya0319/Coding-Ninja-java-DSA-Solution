@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+
+public class Solution {
+
+	/*
+	 * Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> { 
+	 * 		T data; 
+	 * 		BinaryTreeNode<T> left; 
+	 * 		BinaryTreeNode<T> right;
+	 * 		public BinaryTreeNode(T data) 
+	 * 		{ 
+	 * 			this.data = data; 
+	 * 		}
+	 * }
+	 */
+
+	public static ArrayList<Integer> getPath(BinaryTreeNode<Integer> root, int k){
+		/* Your class should be named Solution
+		* Don't write main().
+		* Don't read input, it is passed as function argument.
+		* Return output and don't print it.
+		* Taking input and printing output is handled automatically.
+		*/
+        
+        if(root == null) {
+			return null;
+		}
+		
+		if(root.data == k) {
+			ArrayList<Integer> ans = new ArrayList<Integer>();
+			ans.add(root.data);
+            return ans;
+		}
+		
+		if(root.data > k) {
+			ArrayList<Integer> leftOutput = getPath(root.left,k);
+			if(leftOutput!=null) {
+				leftOutput.add(root.data);
+				return leftOutput;
+			}
+		} else {
+			ArrayList<Integer> rightOutput = getPath(root.right, k);
+			
+			if(rightOutput!=null) {
+				rightOutput.add(root.data);
+				return rightOutput;
+			}
+		}
+		
+		return null;
+	}
+}
