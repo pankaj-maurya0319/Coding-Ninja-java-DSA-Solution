@@ -1,0 +1,22 @@
+
+public class Solution {
+
+	public static String removeConsecutiveDuplicates(String str) {
+		//Your code goes here
+        
+        char startingLetter = str.charAt(0);
+        String newString = "" + startingLetter;
+        for(int i =1; i<str.length(); i++){
+            
+            
+            
+            if(startingLetter!=str.charAt(i)){
+    			
+                startingLetter = str.charAt(i);
+                newString = newString + startingLetter; 
+            }
+        }
+        return newString;
+	}
+
+}
