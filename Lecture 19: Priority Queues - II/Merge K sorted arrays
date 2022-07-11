@@ -1,0 +1,30 @@
+import java.util.PriorityQueue;
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static ArrayList<Integer> mergeKSortedArrays(ArrayList<ArrayList<Integer>> input) {
+
+		ArrayList<Integer> ans = new ArrayList<Integer>();
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+	    int count = 0;
+        
+        if(input.size()==0 || input.get(0).size()==0) return ans;
+        
+         for(int i=0; i<input.size(); i++){
+             for(int j = 0; j<input.get(i).size(); j++){
+                 
+                 pq.add(input.get(i).get(j));
+                 count++;
+             }
+         }
+        
+        for(int i = 0; i<count; i++){
+            ans.add(pq.remove());
+        }
+        
+        return ans;
+
+	}
+
+}
