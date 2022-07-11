@@ -1,0 +1,44 @@
+import java.util.PriorityQueue;
+import java.util.*;
+
+class Pair{
+    int value;
+    int index;
+}
+public class Solution {
+	
+	public static int buyTicket(int input[], int k) {
+		
+		PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        
+        Queue<Pair> queue = new LinkedList<>();
+        
+        for(int i=0;i<input.length;i++){
+            
+            Pair pair = new Pair();
+            pair.index = i;
+            pair.value = input[i];
+            pq.add(input[i]);
+            queue.add(pair);
+            
+        }
+
+        int ans = 0;
+        while(!queue.isEmpty()){
+           
+            if(pq.peek() == queue.peek().value){
+                ans++;
+                pq.remove();
+                Pair pair = queue.poll();
+                
+                if(k == pair.index){
+                    return ans;
+                }
+            }else{
+                queue.add(queue.poll());
+            }
+        }
+
+        return ans;
+	}
+}
