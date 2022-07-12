@@ -1,0 +1,87 @@
+/*
+	Note:
+	To get all the test cases accepted, make recursive calls in following order: Top, Down, Left, Right.
+	This means that if the current cell is (x, y), then order of calls should be: top cell (x-1, y), 
+	down cell (x+1, y), left cell (x, y-1) and right cell (x, y+1).
+*/  
+
+public class Solution {
+    
+    static void print(int[][] maze, boolean[][] visited, int n){
+        
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                
+                if(visited[i][j] && maze[i][j]==1){
+                    System.out.print(1 + " ");
+                }else{
+                    System.out.print(0 + " ");
+                }
+            }
+        }
+        
+        System.out.println();
+    }
+    
+    static boolean isSafe(int newx, int newy, int[][] maze, boolean[][] visited, int n){
+        
+        if((newx >= 0 && newx < n ) && (newy >= 0 && newy <n) && !visited[newx][newy] && maze[newx][newy]==1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    static void solve(int x, int y, int[][] maze, boolean[][] visited, int n){
+        
+        // base case
+        if(x==n-1 && y==n-1){
+            visited[x][y] = true;
+            print(maze, visited, n);
+            visited[x][y] = false;
+            return ;
+        }
+        
+        
+        visited[x][y] = true;
+        //down 
+        
+        if(isSafe(x+1, y, maze, visited, n)){
+            
+            solve(x+1, y, maze, visited, n);
+        }
+        
+        //up 
+        
+        if(isSafe(x-1, y, maze, visited, n)){
+            
+            solve(x-1, y, maze, visited, n);
+        }
+        
+        //left
+        
+        if(isSafe(x, y-1, maze, visited, n)){
+            
+            solve(x, y-1, maze, visited, n);
+        }
+        
+        //right
+        
+        if(isSafe(x, y+1, maze, visited, n)){
+            
+            solve(x, y+1, maze, visited, n);
+        }
+        
+        visited[x][y] = false;
+    }
+
+
+	static void ratInAMaze(int maze[][], int n) {
+		
+        boolean visited[][] = new boolean[n][n];
+        
+        solve(0, 0, maze, visited, n);
+
+	}
+
+}
