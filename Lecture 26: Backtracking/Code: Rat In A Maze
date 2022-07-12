@@ -1,0 +1,70 @@
+
+public class Solution {
+    
+    static boolean flag; 
+    
+    
+    public static boolean isSafe(int nx, int ny, boolean[][] visited, int[][] arr, int n){
+        
+        if( (nx >= 0 && nx < n) && (ny >= 0 && ny < n) && !visited[nx][ny] && arr[nx][ny]==1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public static void check(int x, int y, boolean[][] visited, int[][] arr, int n){
+        
+        // base case
+        
+        if(x==n-1 && y==n-1){
+            flag = true;
+            return ;
+        }
+        
+        visited[x][y] = true;
+        
+        // down
+        if(isSafe(x+1, y, visited, arr, n)){
+            
+             check(x+1, y, visited, arr, n);
+        }
+        
+        // right
+        if(isSafe(x, y+1, visited, arr, n)){
+            
+             check(x, y+1, visited, arr, n);
+        }
+        
+        // left
+        
+        if(isSafe(x, y-1, visited, arr, n)){
+            
+             check(x, y-1, visited, arr, n);
+        }
+        
+        // up
+        
+        if(isSafe(x-1, y, visited, arr, n)){
+            
+             check(x-1, y, visited, arr, n);
+        }
+        
+        visited[x][y] = false;
+    }
+
+	public static boolean ratInAMaze(int maze[][]){
+
+        int n = maze.length;
+        
+		boolean visited[][] = new boolean[n][n];
+        
+        if(maze[0][0] != 1){
+            return false;
+        }
+        
+        check(0, 0, visited, maze, n);
+
+        return flag;
+	}
+}
