@@ -1,0 +1,24 @@
+import java.util.*;
+public class Solution {
+
+	public static void reverseStack(Stack<Integer> input, Stack<Integer> extra) {
+		
+        if(input.size()<=1){
+            return ;
+        }
+        
+        int lastElement = input.pop();
+        
+        reverseStack(input, extra);
+        
+        while(!input.isEmpty()){
+            extra.push(input.pop());
+        }
+        
+        input.push(lastElement);
+        
+        while(!extra.empty()){
+            input.push(extra.pop());
+        }
+	}
+}
