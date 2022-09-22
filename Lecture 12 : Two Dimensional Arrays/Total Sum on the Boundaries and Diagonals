@@ -1,0 +1,64 @@
+
+public class Solution {
+
+	public static void totalSum(int[][] mat) {
+		//Your code goes here
+        int rows = mat.length;
+        int cols = rows;
+        
+        if(rows==0){
+            System.out.println(rows);
+            return;
+        }
+        
+        int r1Sum = 0;
+        int r2Sum = 0;
+        int c1Sum = 0;
+        int c2Sum = 0;
+        int d1Sum = 0;
+        int d2Sum = 0;
+        
+        for(int i=0; i<rows; i++){
+            for(int j=0; j<cols; j++){
+                
+                if(i==0)
+                    r1Sum+=mat[i][j];
+                
+                if(i==rows-1)
+                    r2Sum+=mat[i][j];
+                
+                if(i==j)
+                    d1Sum+=mat[i][j];
+                
+                if(i+j==rows-1)
+                    d2Sum+=mat[i][j];
+                
+                if(j==0)
+                    c1Sum+=mat[i][0];
+                
+                if(j==cols-1)
+                    c2Sum+=mat[i][j];
+            }
+        }
+        int totalSum = r1Sum + r2Sum + c1Sum + c2Sum + d1Sum + d2Sum;
+   
+        
+        
+
+        int totalExtra = 2*(mat[0][0] + mat[0][cols-1] + mat[rows-1][0] + mat[rows-1][cols-1]);
+        
+        
+        int ans = totalSum - totalExtra;
+        
+        if(rows%2==0){
+             System.out.println(ans);
+        }else{
+             System.out.println(ans - mat[rows/2][rows/2]);
+        }
+        
+       
+
+       
+	}
+
+}
