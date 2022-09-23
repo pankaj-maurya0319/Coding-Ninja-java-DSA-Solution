@@ -1,0 +1,33 @@
+import java.util.*;
+public class solution {
+	
+	public static String[] permutationOfString(String input){
+		
+        ArrayList<String> ans = new ArrayList<>();
+        
+        permutate(input, ans, "");
+        
+        String[] str = new String[ans.size()];
+        
+        for(int i=0; i<ans.size(); i++){
+            str[i] = ans.get(i);
+        }
+        
+        return str;
+		
+	}
+    
+    public static void permutate(String input, ArrayList<String> ans, String path){
+        
+        if(input.length()==0){
+            ans.add(path);
+            return ;
+        }
+        
+        for(int i=0; i<input.length(); i++){
+            permutate(input.substring(0, i)+input.substring(i+1, input.length()), ans, path+input.charAt(i));
+        }
+        
+    }
+	
+}
