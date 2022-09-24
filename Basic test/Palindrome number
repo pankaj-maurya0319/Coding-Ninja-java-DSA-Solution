@@ -1,0 +1,26 @@
+import java.util.*;
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		Scanner s = new Scanner(System.in);
+        
+        int n = s.nextInt();
+        
+        int newnum = 0;
+        
+        int temp = n;
+        
+        while(temp>0){
+            
+            newnum = newnum*10 + temp%10;
+            temp/=10;
+        }
+        
+        if(n==newnum){
+            System.out.println(true);
+        }else{
+            System.out.println(false);
+        }
+	}
+}
