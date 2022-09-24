@@ -1,0 +1,29 @@
+public class Solution {
+    
+    public static int fact(int r){
+        
+        int ans = 1;
+        
+        for(int i=1; i<=r; i++){
+            ans = ans*i;
+        }
+        
+        return ans;
+    }
+    
+    public static int ncr(int n, int r){
+        
+        return ((fact(n)/(fact(n-r)))/fact(r));
+    }
+    
+    public static int probability(int n,int x){
+                
+    	int ans = ncr(4, x) * ncr(4, n-x);
+       
+        float prop = 100*ans/ncr(8,n);
+	
+        return (int)prop;
+    }
+    
+
+}
