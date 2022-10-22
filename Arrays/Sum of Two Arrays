@@ -1,4 +1,5 @@
 
+
 public class Solution {
     
     public static void summation(int arr1[], int arr2[], int output[], int n1, int n2){
@@ -35,10 +36,18 @@ public class Solution {
         int n1 = arr1.length;
         int n2 = arr2.length;
         int n3 = output.length-1;
-
-        summation(arr2,arr1,output,n2,n1);
+        
+        
+        
+    	if(n1>=n2){
+          summation(arr1,arr2,output,n1,n2);
+            
+        }else{
+            summation(arr2,arr1,output,n2,n1);
          
-
+        }
+        
+      
         
     }
 
