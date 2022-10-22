@@ -1,0 +1,38 @@
+
+public class Solution {
+
+    public static void sort012(int[] arr){
+    	//Your code goes here
+        int n = arr.length;
+        int nZ = 0;
+        int nT = arr.length-1;
+        int temp;
+        int i=0,j=0;
+        
+        while(j<n){
+            
+            if(nT<0 || nZ>n-1){
+                return;
+            }
+            
+            if(arr[i]==1){
+               i++;   
+            }else
+            if(arr[i]==0){
+                temp = arr[nZ];
+                arr[nZ]=0;
+                arr[i] = temp;
+                nZ++;
+                i++;
+            }else
+            if(arr[i]==2){
+                temp = arr[nT];
+                arr[nT] = 2;
+                arr[i] = temp;
+                nT--;      
+            }
+          j++;  
+        }
+    }
+
+}
