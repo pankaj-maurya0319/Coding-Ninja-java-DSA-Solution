@@ -1,0 +1,45 @@
+
+public class Solution {
+    
+    public static void summation(int arr1[], int arr2[], int output[], int n1, int n2){
+          int carry =0;
+            int i=n1;
+        int n3 = output.length-1;
+           while(i>0){
+                int sum =0;
+                if(n2>0){
+                     sum = arr1[i-1]+arr2[n2-1]+carry;
+                     carry =0;
+                }else{
+                    sum = arr1[i-1] + carry;
+                    carry =0;
+                }
+                
+                if(sum>9){
+                    carry =1;
+                    output[n3] = sum%10;
+                    
+                }else{
+                    output[n3] = sum;
+                    
+                }
+                n2--;
+                n3--;
+                i--;
+            }
+            output[0] = carry;
+    }
+    
+    public static void sumOfTwoArrays(int arr1[], int arr2[], int output[]) {
+    	//Your code goes here
+        int n1 = arr1.length;
+        int n2 = arr2.length;
+        int n3 = output.length-1;
+
+        summation(arr2,arr1,output,n2,n1);
+         
+
+        
+    }
+
+}
