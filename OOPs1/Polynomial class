@@ -1,0 +1,73 @@
+public class Polynomial {
+   
+    int[] coeffAndDegree = new int[5];
+
+
+public void setCoefficient(int degree, int coeff){
+        if(degree < this.coeffAndDegree.length){
+            this.coeffAndDegree[degree] = coeff;
+        }else{
+            restructure(degree);
+            this.coeffAndDegree[degree] = coeff;
+        }
+}
+
+// Prints all the terms(only terms with non zero coefficients are to be printed) in increasing order of degree.
+public void print(){
+		for(int i = 0; i < this.coeffAndDegree.length; i++){
+            if(this.coeffAndDegree[i] != 0){
+                System.out.print(this.coeffAndDegree[i] + "x" + i + " ");
+            }
+        }
+}
+
+// Adds two polynomials and returns a new polynomial which has result
+public Polynomial add(Polynomial p){
+        Polynomial ans = new Polynomial();
+        ans.coeffAndDegree = new int[Math.max(this.coeffAndDegree.length, p.coeffAndDegree.length)];
+        for(int i = 0; i < this.coeffAndDegree.length; i++){
+            ans.coeffAndDegree[i] += this.coeffAndDegree[i];
+        }
+        for(int i = 0; i < p.coeffAndDegree.length; i++){
+            ans.coeffAndDegree[i] += p.coeffAndDegree[i];
+        }
+        return ans;
+}
+
+// Subtracts two polynomials and returns a new polynomial which has result
+public Polynomial subtract(Polynomial p){
+        Polynomial ans = new Polynomial();
+        ans.coeffAndDegree = new int[Math.max(this.coeffAndDegree.length, p.coeffAndDegree.length)];
+        for(int i = 0; i < this.coeffAndDegree.length; i++){
+            ans.coeffAndDegree[i] += this.coeffAndDegree[i];
+        }
+        for(int i = 0; i < p.coeffAndDegree.length; i++){
+            ans.coeffAndDegree[i] -= p.coeffAndDegree[i];
+        }
+        return ans;
+}
+
+// Multiply two polynomials and returns a new polynomial which has result
+public Polynomial multiply(Polynomial p){
+        Polynomial ans = new Polynomial();
+        ans.coeffAndDegree = new int[this.coeffAndDegree.length + p.coeffAndDegree.length ];
+        for(int i = 0; i < this.coeffAndDegree.length; i++){
+            for(int j = 0; j < p.coeffAndDegree.length; j++){
+                if(ans.coeffAndDegree[i+j] == 0){
+                    ans.coeffAndDegree[i+j] = this.coeffAndDegree[i] * p.coeffAndDegree[j];
+                }else{
+                    ans.coeffAndDegree[i+j] =ans.coeffAndDegree[i+j] + this.coeffAndDegree[i] * p.coeffAndDegree[j];
+                }
+            }
+        }
+        return ans;
+}
+   
+    private void restructure(int degree){
+        int temp[] = coeffAndDegree;
+        coeffAndDegree = new int[coeffAndDegree.length *  degree];
+        for(int i = 0; i < temp.length; i++){
+            coeffAndDegree[i] = temp[i];
+        }
+    }
+}
