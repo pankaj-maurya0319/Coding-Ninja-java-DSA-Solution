@@ -1,0 +1,99 @@
+
+
+public class Solution {
+
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+	 public static class Pair<T,V> {
+     
+         T max;
+         V smax;
+
+     }
+	
+	
+	public static TreeNode<Integer> findSecondLargest(TreeNode<Integer> root){
+        
+        
+        Pair<TreeNode<Integer>,TreeNode< Integer>> ans = helper(root,Integer.MIN_VALUE, Integer.MIN_VALUE);
+        
+        return ans.smax;
+        
+    }
+    
+    public static Pair< TreeNode<Integer>, TreeNode<Integer>> helper(TreeNode<Integer> root, int max, int smax){
+        
+        if(root == null){
+            
+            Pair< TreeNode<Integer>, TreeNode<Integer>> ans = new Pair<>();
+            ans.max = null;
+            ans.smax= null;
+            return ans;
+        }
+        
+        if(root.data > max){
+            smax = max;
+            max = root.data;
+        }else if( root.data < max && root.data > smax){
+            smax = root.data;
+        }
+        
+        for(int i=0; i<root.children.size(); i++){
+           Pair< TreeNode<Integer>, TreeNode<Integer>> output = helper(root.children.get(i), max, smax);
+            
+        }
+        
+           Pair< TreeNode<Integer>, TreeNode<Integer>> ans = new Pair<>();
+        	ans.max = max;
+            ans.smax =smax;
+        
+        return ans;
+        
+    }
+    
+
+	
+}
+
+
+// public class Solution {
+// 		public static TreeNode<Integer> largest =new TreeNode<Integer>(Integer.MIN_VALUE);
+//         public static TreeNode<Integer> Slargest=new TreeNode<Integer>(Integer.MIN_VALUE);
+	
+// 	public static TreeNode<Integer> findSecondLargest(TreeNode<Integer> root){
+			
+//         	if(root==null)
+//                 return root;
+        	
+//         	if(root.data>largest.data)
+//             {	Slargest=largest;
+//                 largest=root;
+//             }
+//             else if(root.data<largest.data && root.data>Slargest.data)
+//                Slargest=root;
+        
+//         	for(int i=0;i<root.children.size();i++){
+//                 TreeNode<Integer> temp=findSecondLargest(root.children.get(i));
+//                 if(temp.data>largest.data){
+//                     Slargest=largest;
+//                     largest=temp;
+                    
+//                 }
+//                 else if(temp.data>Slargest.data && Slargest.data<largest.data && temp.data!=largest.data){
+//                     Slargest=temp;
+//                 }
+//             }
+//         	return Slargest;
+// 	}
+// }
+
+
