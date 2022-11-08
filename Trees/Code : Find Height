@@ -1,0 +1,65 @@
+import java.util.*;
+
+public class Solution {
+
+	/*	TreeNode structure 
+	 * 
+	 * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+
+	public static int getHeight(TreeNode<Integer> root){
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+		 * Taking input and printing output is handled automatically.
+		 */
+//         int height = 0;
+//         Queue<TreeNode<Integer>> pendingNodes = new LinkedList<>();
+//         pendingNodes.add(root);
+//         pendingNodes.add(null);
+        
+//         while(!pendingNodes.isEmpty()){
+            
+//             TreeNode<Integer> frontNode = pendingNodes.remove();
+            
+//             if(frontNode == null){
+//                 if(!pendingNodes.isEmpty()){
+//                     pendingNodes.add(null);
+//                 }
+                
+//                 height++;
+//             }else{
+                
+//                 for(int i=0; i<frontNode.children.size();i++){
+//                     pendingNodes.add(frontNode.children.get(i));
+//                 }
+                
+//             }
+            
+//         }
+        
+        if(root == null)
+            return 0;
+        
+        int height = 0;
+        
+        for(int i = 0; i<root.children.size(); i++){
+            
+            int newHeight = getHeight(root.children.get(i));
+            if(newHeight>height){
+                height = newHeight;
+            }
+        }
+        
+        return height+1;
+	}
+
+}
