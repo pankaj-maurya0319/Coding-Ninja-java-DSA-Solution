@@ -1,0 +1,49 @@
+/*
+
+	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T> {
+    	T data;
+    	LinkedListNode<T> next;
+    
+    	public LinkedListNode(T data) {
+        	this.data = data;
+    	}
+	}
+
+*/
+
+public class Solution {
+
+	public static LinkedListNode<Integer> insert(LinkedListNode<Integer> head, int pos, int data){
+		//Your code goes here
+
+        LinkedListNode<Integer> node = new LinkedListNode<Integer>(data);
+
+		if(head==null )
+            return node;
+        if(pos==0){
+            node.next = head;
+            return node;
+        }
+            
+        int count=0;
+        LinkedListNode<Integer> temp=head;
+        while(temp!=null && count<pos-1)
+        {
+            temp=temp.next;
+            count++;
+        }
+        
+        if(temp != null){
+            LinkedListNode<Integer> cur = temp.next;
+            temp.next = node;
+            node.next = cur;
+        }
+         
+        
+        return head;
+		
+
+	}
+}
