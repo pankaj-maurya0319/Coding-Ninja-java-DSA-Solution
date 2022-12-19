@@ -1,0 +1,58 @@
+public class solution {
+
+	// Return a string array that contains all possible codes
+	public static  String[] getCode(String input){
+		
+       if(input.length() == 0){
+           String ans[] = {""};
+           return ans;
+       }
+        
+        
+        
+    	String smallAns[] = getCode(input.substring(1));
+        int number = input.charAt(0)- '0';
+        char value = (char)('a'-1 + number);
+        
+        
+        for(int i=0; i<smallAns.length; i++){
+            smallAns[i] = value + smallAns[i];
+        }
+        
+        String smallAns1[] = new String[0];
+        
+        if(input.length()>=2){
+            int ch1 = input.charAt(0)-'0';
+            int ch2 = input.charAt(1) - '0';
+            int num = (ch1*10) + ch2;
+            
+            if(num>=10 && num<=26){
+            	char firstChar = (char) ('a'-1+num); 
+                smallAns1 = getCode(input.substring(2));
+                
+                for(int i=0; i<smallAns1.length; i++){
+                    smallAns1[i] = firstChar + smallAns1[i];
+                }
+            }
+            
+        }
+        
+        String ans[] = new String[smallAns.length + smallAns1.length];
+        
+        int k=0;
+        
+        for(int i=0; i<smallAns.length; i++){
+            ans[k] = smallAns[i];
+            k++;
+        }
+        
+        for(int i=0; i<smallAns1.length; i++){
+            ans[k] = smallAns1[i];
+            k++;
+        }
+        
+    	return ans;
+		
+	}
+
+}
