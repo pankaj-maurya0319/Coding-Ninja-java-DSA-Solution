@@ -1,0 +1,48 @@
+public class solution {
+
+	public static void printAllPossibleCodes(String input) {
+		
+        String output = "";
+        printAllPossibleCodes(input,output);
+        
+	}
+    
+    public static void printAllPossibleCodes(String input, String outputSofar){
+        
+        if(input.length() == 0){
+            System.out.println(outputSofar);
+            return ;
+        }
+        
+        int num = input.charAt(0) - '0';
+        char value = (char) ('a' -1 + num);
+      	String output = outputSofar;
+        outputSofar = outputSofar+ value;
+        
+        
+     
+        printAllPossibleCodes(input.substring(1),outputSofar);
+        
+        
+        
+        if(input.length()>=2){
+            
+            int ch1 = input.charAt(0) -'0';
+            int ch2 = input.charAt(1) -'0';
+            int number = ch1*10+ch2;
+            
+            if(number>=10 && number<=26){
+				
+                char firstTwochar = (char) ('a'-1+number);
+                
+                output = output + firstTwochar;
+                
+                printAllPossibleCodes(input.substring(2),output);
+                
+            }
+            
+        }
+        
+        
+    }
+}
