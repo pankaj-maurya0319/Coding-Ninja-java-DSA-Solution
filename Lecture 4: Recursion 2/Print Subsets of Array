@@ -1,0 +1,34 @@
+public class solution {
+	public static void printSubsets(int input[]) {
+		int[] output = new int[0];
+        
+        printSubsets(input,0,output);
+
+	}
+    
+    private static void printSubsets(int[] input, int index,int[] output){
+        
+        if(input.length == index){
+            
+            for(int i=0; i<output.length; i++)
+                System.out.print(output[i]+" ");
+            System.out.println();
+            
+            return ;
+        }
+        
+        printSubsets(input,index+1,output);
+        
+        int [] temp = output;
+        output = new int[temp.length+1];
+        int i;
+        for( i=0; i<temp.length; i++)
+            output[i] = temp[i];
+        output[i] = input[index];
+        
+        printSubsets(input,index+1,output);
+        
+        
+        
+    }
+}
