@@ -1,0 +1,41 @@
+public class solution {
+
+	// Return a 2D array that contains all the subsets
+	public static int[][] subsets(int input[]) {
+		
+        return subsets(input,0);
+
+	}
+    
+    public static int[][] subsets(int input[], int index){
+        
+        if(input.length == index){
+            int ans[][] = new int[1][0];
+            return ans;
+        }
+        
+        int[][] smallAns = subsets(input,index+1);
+        
+        int ans[][] = new int[smallAns.length * 2][];
+        
+        
+        for(int i=0; i<smallAns.length;i++){
+        	ans[i]=new int[smallAns[i].length];
+           for(int j=0; j<smallAns[i].length; j++){
+               ans[i][j] = smallAns[i][j];
+           }
+        }
+        
+        for(int i=0; i<smallAns.length; i++){
+            ans[smallAns.length+i]=new int[smallAns[i].length+1];
+            ans[i+smallAns.length][0] = input[index];
+            for(int j=1; j<smallAns[i].length+1; j++){
+                ans[i+smallAns.length][j] = smallAns[i][j-1];
+            }
+        }
+        
+        
+        
+        return ans;
+    }
+}
