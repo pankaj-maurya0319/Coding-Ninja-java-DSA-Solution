@@ -1,0 +1,29 @@
+
+public class solution {
+
+	// Return the updated string
+	public static String addStars(String s) {
+		
+
+        return addStars(s,"");
+        
+     
+	}
+    
+    public static String addStars(String s, String newString){
+        
+        if(s.length() == 1){
+            return newString + s.charAt(0);
+        }
+        
+        newString = newString + s.charAt(0);
+        
+        if(s.charAt(0) == s.charAt(1) ){
+            newString = newString + "*";
+            return addStars(s.substring(1),newString);
+        }
+        
+        return addStars(s.substring(1),newString);
+        
+    }
+}
