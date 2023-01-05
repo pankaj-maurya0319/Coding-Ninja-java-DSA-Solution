@@ -1,0 +1,27 @@
+
+public class solution {
+
+	public static void towerOfHanoi(int disks, char source, char auxiliary, char destination) {
+		
+        char a = source;
+        char b = auxiliary;
+        char c = destination;
+        int n = disks;
+        if(n==0){
+            return ;
+        }
+        if(n ==1){
+            System.out.println(a + " " + c);
+            return ;
+        }
+        
+         towerOfHanoi( n-1,  a, c, b);
+        
+         System.out.println(a + " " + c);
+        
+         towerOfHanoi( n-1, b, a, c );
+        
+    
+        
+	}
+}
