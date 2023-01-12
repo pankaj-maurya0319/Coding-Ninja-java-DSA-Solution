@@ -1,0 +1,56 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Solution {
+
+	public static void reverseQueue(Queue<Integer> input) {
+		//Your code goes here
+        
+        
+        if(input.size()<=1){
+            return ;
+        }
+        
+        int front = input.poll();
+        
+        reverseQueue(input);
+        
+        input.add(front);
+        
+        //-------------------------------
+        
+	//	int temp  = reverse(input);
+        
+        
+        
+	}
+    
+//     public static int reverse(Queue<Integer> input){
+        
+//         if(input.isEmpty()){
+//             return 0;
+//         }
+//         int temp = input.poll();
+        
+//         int s = reverse(input);
+        
+//         System.out.print(temp+" ");
+        
+//         return s;
+//     }
+
+}
+
+
+
+// public class Node<T>(){
+    
+//     T data;
+//     Node next;
+    
+//     public Node<T>(T data){
+//         this.data = data;
+//         next = null;
+//     }
+    
+// }
