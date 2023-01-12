@@ -11,18 +11,14 @@ public class Solution {
             
             if(map.containsKey(key-k) && k!=0){
                 
-                for(int i=0; i<map.get(key-k); i++){
-					count++;
-                }
+					count+= map.get(key-k);
                 
             }
             
              if(map.containsKey(key + k)){
                 
-                for(int i=0; i<map.get(key+k); i++){
-					count++;
-                }
-                
+             
+					count+= map.get(key+k);
             }
             
             if(map.containsKey(key)){
@@ -30,12 +26,9 @@ public class Solution {
             }else{
                 map.put(key, 1);
             }
-            
-           
-            
+
         }
         
         return count;
 	}
 }
-
