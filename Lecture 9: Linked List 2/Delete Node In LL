@@ -9,32 +9,19 @@ public class Solution {
         {
             return head.next;
         }
-       
-	   int length = 0;
 
 	LinkedListNode<Integer> temp = head;
 
-	while(temp != null){
-		length++;
-		temp = temp.next;
-	}
-
-	temp = head;
-
-	if(pos > length-1){
-		return head;
-	}
-
 	int count = 0;
 
-	while(count < pos-1){
+	while(count < pos-1 && temp != null){
 		temp=temp.next;
 		count++;
 	}
 
-	temp.next = temp.next.next;
-
-
+	if(temp != null && temp.next !=null){
+		temp.next = temp.next.next;
+	}
 
         return head;
 	}
