@@ -1,51 +1,25 @@
-
 public class Solution {
     
     public static void arrange(int[] arr, int n) {
-    	// odd elements
+        int left = 0;
+        int right = n-1;
+        int counter = 1;
         
-//         if(arr.length==0) return ;
         
-//         int i =0;
-//         arr[i]=1;
-//         if(n%2==1){
-//             for(i =0;i<(n-1)/2;i++){
-//                 arr[i+1]=arr[i]+2;
-//             }
-//             arr[(n-1)/2+1]=n-1;
-//             for(i=(n-1)/2+1;i<n-1;i++){
-//                 arr[i+1]=arr[i]-2;
-//             }
-//         }else{
-//             for(i =0;i<(n-1)/2;i++){
-//                 arr[i+1]=arr[i]+2;
-//             }
-//             arr[(n-1)/2+1]=n;
-//             for(i=(n-1)/2+1;i<n-1;i++){
-//                 arr[i+1]=arr[i]-2;
-//         }
-//     }
-        
-         int startNum=1;
-        int counter =1;
-        int i;
-        for( i=0; i<n; i++){
+        while(left <= right){
             
-            if(n>=startNum){
-                 arr[i]=startNum;
-                startNum+=2;
-                 if(n%2==0){
-                    counter=startNum-1;
-                }else{
-                    counter=startNum-3;
-                }
+            if(counter%2 == 1){
+                arr[left] = counter;
+                left++;
+                counter++;
                 
             }else{
-               
-                 arr[i]=counter;
-				 counter-=2;		
+                
+                arr[right ] = counter;
+                counter++;
+                right--;
             }
-            
-        }
-}
+        }  
+
+    }
 }
