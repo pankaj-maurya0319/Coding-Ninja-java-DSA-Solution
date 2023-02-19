@@ -1,35 +1,48 @@
 
+
 public class Solution {
 
 	public static boolean isPermutation(String str1, String str2) {
-		//Your code goes here
+	
         
-        StringBuffer string1 = new StringBuffer(str1);
-        StringBuffer string2 = new StringBuffer(str2);
+//         StringBuffer string1 = new StringBuffer(str1);
+//         StringBuffer string2 = new StringBuffer(str2);
         
         
-        if(str1.length()!=str2.length())
-            return false;
+//         if(str1.length()!=str2.length())
+//             return false;
         
-        if(str1.equals(str2))
-            return true;
+//         if(str1.equals(str2))
+//             return true;
         
-        for( int i=0;i<str1.length(); i++){
+//         for( int i=0;i<str1.length(); i++){
             
-            boolean present = false;
+//             boolean present = false;
             
-            for(int j=0; j<str2.length(); j++){
+//             for(int j=0; j<str2.length(); j++){
                 
-                if(string1.charAt(i)==string2.charAt(j)){
-                    present = true;
-                    string2.setCharAt(j,'#');
-                    string1.setCharAt(i,'@');
-                }
+//                 if(string1.charAt(i)==string2.charAt(j)){
+//                     present = true;
+//                     string2.setCharAt(j,'#');
+//                     string1.setCharAt(i,'@');
+//                 }
                 
-            }
-            if(!present)
-                return false;
+//             }
+//             if(!present)
+//                 return false;
             
+//         }
+//         return true;
+        int[] freq = new int[256];
+        
+        for(int i=0; i<str1.length(); i++){
+            freq[str1.charAt(i)]++;
+        }
+        for(int i=0; i<str2.length(); i++){
+            freq[str2.charAt(i)]--;
+        }
+        for(int i=0; i<256; i++){
+            if(freq[i]>0) return false;
         }
         return true;
         
