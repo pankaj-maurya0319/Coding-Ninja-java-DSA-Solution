@@ -2,26 +2,17 @@ public class Solution {
 
     public static int secondLargestElement(int[] arr) {
     	//Your code goes here
-        
-        int n = arr.length;
-        
-        int S = Integer.MIN_VALUE;
-        int L = Integer.MIN_VALUE;
-        
-        for(int i=0; i<n; i++){
-            
-            if(arr[i]==L)
-                continue;
-            if(arr[i]>L){
-                S=L;
-                L=arr[i];
-            }else if(arr[i]>S){
-                S=arr[i];
+        int l = Integer.MIN_VALUE, l2 = Integer.MIN_VALUE;
+        for(int i = 0; i<arr.length; i++){
+            if(arr[i]>l){
+                l2 = l;
+                l = arr[i];
             }
-            
+            else if(arr[i]>l2 && arr[i] != l){
+                l2 = arr[i];
+            }
         }
-        return S;
-        
+        return l2;
     }
 
 }
